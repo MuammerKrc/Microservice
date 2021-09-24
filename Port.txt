@@ -1,0 +1,19 @@
+*******IdentityServer******
+Authserver=>https://localhost:5001
+
+
+*******Services******
+Catalog=>https://localhost:5010
+PhotoStock=>https://localhost:5011
+Basket=>https://localhost:5012
+Discount=>https://localhost:5013
+Order=>https://localhost:5014
+Payment=>https://localhost:5015
+
+
+*******Gateways*********
+GatewayClient1=>https://localhost:5020
+
+
+*******Clients******
+Client1 =>https://localhost:50030

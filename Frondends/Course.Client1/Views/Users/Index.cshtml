@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model UserViewModel
+<div class="row">
+
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Kullanıcı Bilgileri</h5>
+
+                <table class="table table-active table-hover">
+                    <thead>
+                        <tr>
+                            <th>Kullanıcı Adı</th>
+                            <th>Email</th>
+                            <th>City</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Model.Username</td>
+                            <td>@Model.Email</td>
+                            <td>@Model.City</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="~/Courses" class="list-group-item list-group-item-action active" aria-current="true">
+                Kurslarım
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">A second link item</a>
+        </div>
+    </div>
+</div>
+
