@@ -1,5 +1,6 @@
 ﻿using Course.Client1.ConfigurationOptions;
 using Course.Client1.ConfigurationOptions.Abstract;
+using Course.Client1.Extensions;
 using Course.Client1.Helpers;
 using Course.Client1.Services;
 using Course.Client1.Services.Abstract;
@@ -36,7 +37,6 @@ namespace Course.Client1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            serviceApiSettings = Configuration.GetSection("ServiceSettings").Get<ServiceApiSettings>();
             
             services.AddHttpContextAccessor();
             services.AddAccessTokenManagement();
@@ -46,21 +46,7 @@ namespace Course.Client1
             services.AddScoped<ISharedIdentityService, SharedIdentityService>();
             services.AddSingleton<PhotoHelper>();
             //HttpClient
-            services.AddHttpClient<IClientSettings, ClientSettings>();
-            services.AddHttpClient<IIdentityService, IdentityService>();
-            services.AddHttpClient<IPhotoService, PhotoService>(opt =>
-            {
-                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.PhotoService.Path}");
-            }).AddHttpMessageHandler<ClientCredentialsTokenHandler>();
-            services.AddHttpClient<ICatalogService, CatalogService>(opt =>
-             {
-                 opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.CatalogService.Path}/");
-             }).AddHttpMessageHandler<ClientCredentialsTokenHandler>();
-            services.AddHttpClient<IUserService, UserService>(opt =>
-            {
-                opt.BaseAddress = new Uri(serviceApiSettings.BaseUrl);
-            }).AddHttpMessageHandler<PasswordTokenHandler>();
-
+            services.AddHttpClientServices(Configuration);
 
             // ConfigureSettings
             services.Configure<ClientSettings>(Configuration.GetSection("ClientSettings"));
@@ -98,6 +84,7 @@ namespace Course.Client1
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
             }
             else
             {

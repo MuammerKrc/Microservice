@@ -82,7 +82,7 @@ namespace Course.IdentityServer
                         "discount_fullpermission",
                         "order_fullpermission",
                         "payment_fullpermission",
-                        "gateway_fullpermissin",
+                        "gateway_fullpermission",
                         IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,

@@ -10,11 +10,11 @@
 <hr />
 <div class="row">
 
-    <div class="col-md-8 offset-md-8">
+    <div class="col-md-8 offset-md-2">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">KursGüncelleme</h5>
-                <form asp-action="Update" method="post">
+                <form asp-action="Update" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="UserId" />
                     <input type="hidden" asp-for="Id" />
@@ -45,6 +45,10 @@
                         <label class="form-label" asp-for="Feature.Duration"></label>
                         <input class="form-control" asp-for="Feature.Duration" />
                         <span class="text-danger" asp-validation-for="Feature.Duration"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="PhotoFile"></label>
+                        <input type="file" asp-for="PhotoFile" class="form-control" />
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Güncelle" class="btn btn-primary" />

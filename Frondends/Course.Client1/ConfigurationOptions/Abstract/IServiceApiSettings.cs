@@ -11,5 +11,9 @@ namespace Course.Client1.ConfigurationOptions.Abstract
         public string PhotoStockUrl { get; set; }
         public ServicePath CatalogService { get; set; }
         public ServicePath PhotoService { get; set; }
+        public ServicePath BasketService { get; set; }
+        public ServicePath DiscountService { get; set; }
+        public ServicePath OrderService { get; set; }
+
     }
 }

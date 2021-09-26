@@ -13,6 +13,12 @@ namespace Course.Client1.ConfigurationOptions
         public string GatewayBaseUri { get; set; }
         public ServicePath CatalogService { get; set; }
         public ServicePath PhotoService { get; set; }
+        public ServicePath BasketService { get; set; }
+        public ServicePath DiscountService { get; set; }
+        public ServicePath PaymentService { get; set; }
+        public ServicePath OrderService { get; set; }
+
+
 
     }
     public class ServicePath

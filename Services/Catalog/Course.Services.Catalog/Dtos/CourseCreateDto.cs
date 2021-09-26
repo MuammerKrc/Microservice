@@ -11,7 +11,7 @@ namespace Course.Services.Catalog.Dtos
         public string UserId { get; set; }
         public string Description { get; set; }
         public string Name { get; set; }
-        public string Price { get; set; }
+        public decimal Price { get; set; }
         public string PictureUrl { get; set; }
         public FeatureDto Feature { get; set; }
     }

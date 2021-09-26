@@ -36,15 +36,11 @@ namespace Course.Services.Basket
         {
             var requiredAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
-            services.AddAuthentication(opt =>
-            {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
             {
                 opt.Authority = Configuration["IdentityServerURL"];
                 opt.Audience = "resource_basket";
-                opt.RequireHttpsMetadata = true;
+                opt.RequireHttpsMetadata = false;
             });
 
             services.AddHttpContextAccessor();
@@ -84,7 +80,6 @@ namespace Course.Services.Basket
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Course.Services.Basket v1"));
             }
 
-            app.UseHttpsRedirection();
 
 
             app.UseRouting();

@@ -12,8 +12,9 @@ namespace Course.Client1.Models.CatalogModels
         public string UserId { get; set; }
         public string Description { get; set; }
         public string Name { get; set; }
-        public string Price { get; set; }
+        public decimal Price { get; set; }
         public string PictureUrl { get; set; }
+        public string StockPictureUrl { get; set; }
         public DateTime CreatedTime { get; set; }
         public FeatureViewModel Feature { get; set; }
         public CategoryViewModel Category { get; set; }

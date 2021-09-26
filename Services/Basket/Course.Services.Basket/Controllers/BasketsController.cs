@@ -27,12 +27,12 @@ namespace Course.Services.Basket.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBasket()
         {
-            var Claims = User.Claims;
             return QQReturnObject(await _basketService.GetBasket(_identityService.GetUserId));
         }
         [HttpPost]
         public async Task<IActionResult> SaveOrUpdate(BasketDto basketDto)
         {
+           basketDto.UserId = _identityService.GetUserId;
            return QQReturnObject(await _basketService.SaveOrUpdate(basketDto));
         }
         [HttpDelete]

@@ -34,6 +34,23 @@
         "AllowedScopes": [ "photo_stock_fullpermission" ]
       }
     },
+    //{
+    //  "DownstreamPathTemplate": "/api{everything}",
+    //  "DownstreamScheme": "https",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 5012
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/services/basket/{everything}",
+    //  "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+    //  "UpstreamScheme": "https",
+    //  "AuthenticationOptions": {
+    //    "AuthenticationProviderKey": "GateWayAutSchema",
+    //    "AllowedScopes": [ "basket_fullpermission"]
+    //  }
+    //},
     {
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "https",

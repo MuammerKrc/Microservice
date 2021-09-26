@@ -35,6 +35,7 @@ namespace Course.Services.Order.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder(CreateOrderCommand createOrderCommand)
         {
+            createOrderCommand.BuyerId = _sharedIdentityService.GetUserId;
             var response = await _mediator.Send(createOrderCommand);
             return QQReturnObject(response);
         }

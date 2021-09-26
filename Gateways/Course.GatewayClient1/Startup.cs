@@ -32,6 +32,7 @@ namespace Course.GatewayClient1
             services.AddAuthentication().AddJwtBearer("GateWayAutSchema",opt=> {
                 opt.Authority = Configuration["IdentityServerURL"];
                 opt.Audience = "resource_gateway";
+                opt.RequireHttpsMetadata = false;
             });
             services.AddOcelot();
 
