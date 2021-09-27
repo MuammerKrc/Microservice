@@ -9,7 +9,7 @@ namespace Course.Client1.Services.Abstract.MicroserviceAbstract
     public interface IOrderService
     {
         Task<OrderCreatedViewModel> CreateOrder(CheckoutInfoInput checkoutInfoInput);
-        Task SuspendOrder(CheckoutInfoInput checkoutInfoInput);
+        Task<OrderSuspendViewModel> SuspendOrder(CheckoutInfoInput checkoutInfoInput);
         Task<List<OrderViewModel>> GetOrder();
     }
 }

@@ -27,17 +27,37 @@ namespace Course.Client1.Controllers
         [HttpPost]
         public async Task<IActionResult> Checkout(CheckoutInfoInput checkoutInfoInput)
         {
-            var orderStatus = await _orderService.CreateOrder(checkoutInfoInput);
-            if(!orderStatus.IsSuccessful)
+            //1. Path
+            //var orderStatus = await _orderService.CreateOrder(checkoutInfoInput);
+            //if (!orderStatus.IsSuccessful)
+            //{
+            //    var basket = await _basketService.Get();
+            //    ViewBag.basket = basket;
+            //    ViewBag.error = orderStatus.Error;
+            //    return View();
+            //}
+            //return RedirectToAction("SuccessfulCheckout", new { orderId = orderStatus.OrderId });
+
+            //2.Path asynchronous
+            var orderSuspend = await _orderService.SuspendOrder(checkoutInfoInput);
+            if(!orderSuspend.IsSuccessful)
             {
+                var basket = await _basketService.Get();
+                ViewBag.basket = basket;
+                ViewBag.error = orderSuspend.Error;
                 return View();
             }
-            return RedirectToAction("SuccessfulCheckout",new {orderId=orderStatus.OrderId });
+            return RedirectToAction("SuccessfulCheckout",new {orderId= 14 });
         }
         public IActionResult SuccessfulCheckout(int orderId)
         {
             ViewBag.orderId = orderId;
             return View();
+        }
+        public async Task<IActionResult> CheckoutHistory()
+        {
+            var result = await _orderService.GetOrder();
+            return View(result);
         }
     }
 }

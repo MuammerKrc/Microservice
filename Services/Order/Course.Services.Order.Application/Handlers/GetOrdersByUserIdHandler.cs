@@ -25,7 +25,7 @@ namespace Course.Services.Order.Application.Handlers
 
         public async Task<Response<List<OrderDto>>> Handle(GetOrdersByUserIdQuery request, CancellationToken cancellationToken)
         {
-            var orders = await _context.Orders.Include(i => i.orderItems)
+            var orders = await _context.Orders.Include(i => i.OrderItems)
                                                .Where(x => x.BuyerId == request.UserId)
                                                .ToListAsync();
             if(!orders.Any())

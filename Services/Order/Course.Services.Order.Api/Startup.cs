@@ -1,5 +1,7 @@
+using Course.Services.Order.Application.Consumer;
 using Course.Services.Order.Infrastucture;
 using Course.Shared.Services;
+using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -34,6 +36,27 @@ namespace Course.Services.Order.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddMassTransit(opt =>
+            {
+                opt.AddConsumer<CreateOrderMessageCommandConsumer>();
+
+                opt.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host(Configuration.GetSection("RabbitMQUrl").Value.ToString(), "/", host =>
+                    {
+                        host.Username("guest");
+                        host.Password("guest");
+                    });
+
+                    cfg.ReceiveEndpoint("order-created-service", e =>
+                    {
+                        e.ConfigureConsumer<CreateOrderMessageCommandConsumer>(context);
+                    });
+                });
+            });
+            services.AddMassTransitHostedService();
+
             services.AddHttpContextAccessor();
             services.AddMediatR(typeof(Course.Services.Order.Application.Handlers.GetOrdersByUserIdHandler).Assembly);
             services.AddScoped<ISharedIdentityService, SharedIdentityService>();

@@ -11,6 +11,6 @@ namespace Course.Client1.Models.OrderModels
 
         public DateTime CreatedDate { get; set; }
         public string BuyerId { get; set; }
-        private List<OrderItemViewModel> OrderItems { get; set; }
+        public List<OrderItemViewModel> OrderItems { get; set; }
     }
 }

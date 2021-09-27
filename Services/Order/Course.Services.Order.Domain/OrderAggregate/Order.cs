@@ -19,7 +19,7 @@ namespace Course.Services.Order.Domain.OrderAggregate
 
         private List<OrderItem> _orderItems;
 
-        public IReadOnlyList<OrderItem> orderItems { get { return _orderItems; } }
+        public IReadOnlyList<OrderItem> OrderItems { get { return _orderItems; } }
         public Order()
         {
         }

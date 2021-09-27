@@ -16,8 +16,7 @@ namespace Course.Services.Order.Application.Dtos
 
         public AddressDto Address {get;set;}
 
-
-        private List<OrderItemDto> OrderItems { get; set; }
+        public List<OrderItemDto> OrderItems { get; set; }
 
     }
 }

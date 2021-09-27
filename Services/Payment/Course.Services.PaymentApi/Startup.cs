@@ -1,3 +1,4 @@
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -30,6 +31,20 @@ namespace Course.Services.PaymentApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMassTransit(opt =>
+            {
+                opt.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host(Configuration.GetSection("RabbitMQUrl").Value.ToString(), "/", host =>
+                      {
+                          host.Username("guest");
+                          host.Password("guest");
+                      });
+                });
+            });
+            services.AddMassTransitHostedService();
+
+
             var requiredAuthenticate = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
             services.AddAuthentication(opt =>
